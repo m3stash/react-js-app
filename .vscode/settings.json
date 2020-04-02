@@ -1,0 +1,7 @@
+{
+  "files.eol": "\n",
+  "prettier.endOfLine": "lf",
+  "editor.tabSize": 2,
+  "prettier.bracketSpacing": false,
+  "prettier.arrowParens": "always"
+}
