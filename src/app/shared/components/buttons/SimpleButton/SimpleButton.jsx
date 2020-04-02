@@ -4,7 +4,7 @@ import './SimpleButton.css';
 
 function SimpleButton(props) {
   const { buttonName } = props;
-  return <button type="button">{buttonName}</button>;
+  return <button type="button">button name :{buttonName}</button>;
 }
 
 export default SimpleButton;

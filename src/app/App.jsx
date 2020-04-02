@@ -2,12 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import {
-  SaveButton,
-  ImportButton,
-  ErrorBoundary,
-  Morpion,
-} from './shared/components';
+import { ImportButton, ErrorBoundary, Morpion } from './shared/components';
 
 const SimpleButton = lazy(() =>
   import('./shared/components/buttons/SimpleButton/SimpleButton'),
@@ -29,7 +24,6 @@ function RouteWithSubRoutes(route) {
 
 RouteWithSubRoutes.propTypes = {
   path: PropTypes.string.isRequired,
-  // component: PropTypes.element.isRequired,
 };
 
 const routes = [
@@ -47,7 +41,6 @@ function App() {
   return (
     <div className="App">
       <br />
-      <SaveButton name="Toto" />
       <ImportButton />
       <ErrorBoundary>
         <Suspense fallback={<div>Chargement...</div>}>

@@ -1,8 +1,9 @@
 {
-  "extends": ["airbnb", "airbnb/hooks"],
+  "extends": ["airbnb", "airbnb/hooks", "eslint:recommended"],
   "plugins": [],
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "react/jsx-one-expression-per-line": [0, "none"]
   },
   "parser": "babel-eslint",
   "env": {

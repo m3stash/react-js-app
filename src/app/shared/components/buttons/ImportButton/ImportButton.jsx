@@ -7,6 +7,10 @@ export default class ImportButton extends React.Component {
   };
 
   render() {
-    return <button onClick={this.clickHandler}>Import</button>;
+    return (
+      <button type="button" onClick={this.clickHandler}>
+        Import
+      </button>
+    );
   }
 }

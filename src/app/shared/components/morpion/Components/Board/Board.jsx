@@ -6,7 +6,13 @@ import Square from '../Square/Square';
 export default class Board extends React.Component {
   renderSquare(i) {
     const { onClick, squares } = this.props;
-    return <Square value={squares[i]} onClick={() => onClick(i)} />;
+    return (
+      <Square
+        key={`square-${i}`}
+        value={squares[i]}
+        onClick={() => onClick(i)}
+      />
+    );
   }
 
   renderRow() {
@@ -18,7 +24,11 @@ export default class Board extends React.Component {
         childrenSquare.push(this.renderSquare(count));
         count += 1;
       }
-      items.push(<div className="board-row">{childrenSquare}</div>);
+      items.push(
+        <div key={`row-${i}`} className="board-row">
+          {childrenSquare}
+        </div>,
+      );
     }
     return items;
   }
