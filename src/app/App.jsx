@@ -2,7 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import { ImportButton, ErrorBoundary, Morpion } from './shared/components';
+import { ImportButton, ErrorBoundary } from './shared/components';
+import MenuLeft from './feature/MenuLeft';
 
 const SimpleButton = lazy(() =>
   import('./shared/components/buttons/SimpleButton'),
@@ -28,8 +29,14 @@ RouteWithSubRoutes.propTypes = {
 
 const routes = [
   {
+    name: 'dashboard',
     path: '/dashboard',
     component: lazy(() => import('./routes/Dashboard')),
+  },
+  {
+    name: 'morpion',
+    path: '/morpion',
+    component: lazy(() => import('./routes/Morpion')),
   },
   {
     path: '*',
@@ -40,10 +47,9 @@ const routes = [
 function App() {
   return (
     <div className="App">
-      <br />
       <ImportButton />
       <ErrorBoundary>
-        <Suspense fallback={<div>Chargement...</div>}>
+        <Suspense fallback={<div>Mettre spinner ici !...</div>}>
           <SimpleButton buttonName="Button!" />
           <Switch>
             {routes.map((route, i) => (
@@ -54,10 +60,9 @@ function App() {
               />
             ))}
           </Switch>
+          <MenuLeft routes={routes} />
         </Suspense>
       </ErrorBoundary>
-      <br />
-      <Morpion />
     </div>
   );
 }
