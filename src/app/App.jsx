@@ -5,7 +5,7 @@ import './App.css';
 import { ImportButton, ErrorBoundary, Morpion } from './shared/components';
 
 const SimpleButton = lazy(() =>
-  import('./shared/components/buttons/SimpleButton/SimpleButton'),
+  import('./shared/components/buttons/SimpleButton'),
 );
 
 function Redirection() {
@@ -29,7 +29,7 @@ RouteWithSubRoutes.propTypes = {
 const routes = [
   {
     path: '/dashboard',
-    component: lazy(() => import('./routes/Dashboard/Dashboard')),
+    component: lazy(() => import('./routes/Dashboard')),
   },
   {
     path: '*',

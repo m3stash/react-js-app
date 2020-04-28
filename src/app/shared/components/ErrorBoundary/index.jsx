@@ -16,18 +16,20 @@ export default class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     console.log(error, errorInfo);
-    this.setState(state => ({ ...state, hasError: true }));
+    this.setState((state) => ({ ...state, hasError: true }));
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError, children } = this.props;
+    if (hasError) {
       // Vous pouvez afficher n'importe quelle UI de repli.
       return <h1>Something went wrong.</h1>;
     }
-    return this.props.children;
+    return children;
   }
 }
 
 ErrorBoundary.propTypes = {
+  hasError: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };

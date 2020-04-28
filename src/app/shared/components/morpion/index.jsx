@@ -1,6 +1,6 @@
 import React from 'react';
 import './Morpion.css';
-import Board from './Components/Board/Board';
+import Board from './Components/Board';
 
 export default class Morpion extends React.Component {
   constructor(props) {
@@ -87,9 +87,9 @@ export default class Morpion extends React.Component {
 
     let status;
     if (winner) {
-      status = `Winner: ' + ${winner}`;
+      status = `Winner: ' ${winner}`;
     } else {
-      status = `Next player: + ${xIsNext} ? 'X' : 'O')`;
+      status = `Next player: ${xIsNext ? 'X' : 'O'}`;
     }
 
     return (
