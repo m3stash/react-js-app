@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './MenuLeft.css';
+import './Navigation.scss';
 
-export default class MenuLeft extends React.Component {
+export default class Navigation extends React.Component {
   createMenu() {
     const { routes } = this.props;
     const render = routes.map((route, i) => {
@@ -19,11 +19,11 @@ export default class MenuLeft extends React.Component {
   }
 
   render() {
-    return <ul>{this.createMenu()}</ul>;
+    return <ul className="container">{this.createMenu()}</ul>;
   }
 }
 
-MenuLeft.propTypes = {
+Navigation.propTypes = {
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       path: PropTypes.string.isRequired,

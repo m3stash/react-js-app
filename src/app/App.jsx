@@ -1,9 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import { ImportButton, ErrorBoundary } from './shared/components';
-import MenuLeft from './feature/MenuLeft';
+import Navigation from './features/Navigation';
+import Spinner from './features/Spinner';
 
 const SimpleButton = lazy(() =>
   import('./shared/components/buttons/SimpleButton'),
@@ -46,24 +47,30 @@ const routes = [
 
 function App() {
   return (
-    <div className="App">
-      <ImportButton />
+    <React.StrictMode>
       <ErrorBoundary>
-        <Suspense fallback={<div>Mettre spinner ici !...</div>}>
+        <Suspense fallback={<Spinner />}>
+          {/*
+          <ImportButton />
           <SimpleButton buttonName="Button!" />
-          <Switch>
-            {routes.map((route, i) => (
-              <RouteWithSubRoutes
-                key={`${i + route.path}`}
-                path={route.path}
-                component={route.component}
-              />
-            ))}
-          </Switch>
-          <MenuLeft routes={routes} />
+          */}
+          <div className="content-navigation">
+            <Navigation routes={routes} />
+          </div>
+          <div className="content-container">
+            <Switch>
+              {routes.map((route, i) => (
+                <RouteWithSubRoutes
+                  key={`${i + route.path}`}
+                  path={route.path}
+                  component={route.component}
+                />
+              ))}
+            </Switch>
+          </div>
         </Suspense>
       </ErrorBoundary>
-    </div>
+    </React.StrictMode>
   );
 }
 

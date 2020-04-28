@@ -1,5 +1,5 @@
 import React from 'react';
-import './Morpion.css';
+import './Morpion.scss';
 import Board from './Components/Board';
 
 export default class Morpion extends React.Component {
