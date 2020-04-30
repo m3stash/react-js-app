@@ -2,8 +2,20 @@ import React from 'react';
 import './Morpion.css';
 import Board from './Components/Board';
 
-export default class Morpion extends React.Component {
-  constructor(props) {
+interface IState {
+  xIsNext: boolean;
+  history: ISquare[];
+  stepNumber: number;
+}
+
+interface IProps {}
+
+interface ISquare {
+  squares: string[];
+}
+
+export default class Morpion extends React.Component<IProps, IState> {
+  constructor(props: any) {
     super(props);
     this.state = {
       history: [
@@ -16,7 +28,7 @@ export default class Morpion extends React.Component {
     };
   }
 
-  calculateWinner = (squares) => {
+  private calculateWinner(squares: string[]): string | null {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -38,9 +50,9 @@ export default class Morpion extends React.Component {
       }
     }
     return null;
-  };
+  }
 
-  handleClick(i) {
+  private handleClick(i: number): void {
     const { xIsNext, history, stepNumber } = this.state;
     const histo = history.slice(0, stepNumber + 1);
     const current = histo[histo.length - 1];
@@ -60,14 +72,14 @@ export default class Morpion extends React.Component {
     });
   }
 
-  jumpTo(step) {
+  private jumpTo(step: number): void {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const { xIsNext, history, stepNumber } = this.state;
     const current = history[stepNumber];
     const winner = this.calculateWinner(current.squares);
@@ -97,7 +109,7 @@ export default class Morpion extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={(i: number) => this.handleClick(i)}
           />
         </div>
         <div className="game-info">

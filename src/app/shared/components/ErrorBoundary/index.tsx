@@ -1,8 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import './ErrorBoundary.css';
 
-export default class ErrorBoundary extends React.Component {
+interface IErrorBOundary {
+  hasError: boolean;
+}
+
+export default class ErrorBoundary extends React.Component<{}, IErrorBOundary> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -19,22 +22,12 @@ export default class ErrorBoundary extends React.Component {
     this.setState((state) => ({ ...state, hasError: true }));
   }
 
-  render() {
-    const { hasError, children } = this.props;
-    if (hasError) {
+  render(): React.ReactNode | JSX.Element {
+    const { children } = this.props;
+    if (this.state.hasError) {
       // Vous pouvez afficher n'importe quelle UI de repli.
       return <h1>Something went wrong.</h1>;
     }
     return children;
   }
 }
-
-ErrorBoundary.propTypes = {
-  hasError: PropTypes.bool,
-  children: PropTypes.node,
-};
-
-ErrorBoundary.defaultProps = {
-  hasError: false,
-  children: null,
-};

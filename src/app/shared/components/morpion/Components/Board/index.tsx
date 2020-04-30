@@ -1,10 +1,18 @@
 import './Board.css';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Square from '../Square';
 
-export default class Board extends React.Component {
-  renderSquare(i) {
+interface IBoard {
+  onClick: (i: number) => void;
+  squares: string[];
+}
+
+export default class Board extends React.Component<IBoard> {
+  constructor(props: IBoard) {
+    super(props);
+  }
+
+  private renderSquare(i: number): JSX.Element {
     const { onClick, squares } = this.props;
     return (
       <Square
@@ -15,11 +23,11 @@ export default class Board extends React.Component {
     );
   }
 
-  renderRow() {
-    const items = [];
+  private renderRow(): JSX.Element[] {
+    const items = Array();
     let count = 0;
     for (let i = 0; i <= 2; i += 1) {
-      const childrenSquare = [];
+      const childrenSquare = Array();
       for (let j = 0; j <= 2; j += 1) {
         childrenSquare.push(this.renderSquare(count));
         count += 1;
@@ -33,12 +41,7 @@ export default class Board extends React.Component {
     return items;
   }
 
-  render() {
+  render(): JSX.Element {
     return <div>{this.renderRow()}</div>;
   }
 }
-
-Board.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  squares: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
