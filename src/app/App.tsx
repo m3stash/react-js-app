@@ -1,20 +1,19 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import { ImportButton, ErrorBoundary } from './shared/components';
+import { ErrorBoundary } from './shared/components';
 import Navigation from './features/Navigation';
 import Spinner from './features/Spinner';
 import { IRoute } from './core/Interfaces/IRoute';
 
-// toDO remove this (just for test)
-const SimpleButton = lazy(() =>
-  import('./shared/components/buttons/SimpleButton'),
-);
-
 const RouteWithSubRoutes = (route: IRoute): JSX.Element => {
-  const { path, name } = route;
+  const { path } = route;
   return <Route exact path={path} render={() => <route.component />} />;
 };
+
+function Redirection() {
+  return <Redirect to="/dashboard" />;
+}
 
 const routes = [
   {
@@ -33,25 +32,17 @@ const routes = [
   },
 ];
 
-function Redirection() {
-  return <Redirect to="/dashboard" />;
-}
-
-function App() {
+function App(): JSX.Element {
   return (
     <React.StrictMode>
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
-          {/*
-          <ImportButton />
-          <SimpleButton buttonName="Button!" />
-          */}
           <div className="content-navigation">
             <Navigation {...routes} />
           </div>
           <div className="content-container">
             <Switch>
-              {routes.map((route, i) => (
+              {routes.map((route) => (
                 <RouteWithSubRoutes key={route.name} {...route} />
               ))}
             </Switch>
@@ -63,4 +54,3 @@ function App() {
 }
 
 export default App;
-export type FixMeLater = any;

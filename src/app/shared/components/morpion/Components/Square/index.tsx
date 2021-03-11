@@ -1,7 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export default function Square(props) {
+interface ISquare {
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  value: string,
+}
+
+export default function Square(props: ISquare): JSX.Element {
   const { onClick, value } = props;
   return (
     <button type="button" className="square" onClick={onClick}>
@@ -9,8 +13,3 @@ export default function Square(props) {
     </button>
   );
 }
-
-Square.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};

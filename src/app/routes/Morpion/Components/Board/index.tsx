@@ -8,26 +8,16 @@ interface IBoard {
 }
 
 export default class Board extends React.Component<IBoard> {
-  constructor(props: IBoard) {
-    super(props);
-  }
-
   private renderSquare(i: number): JSX.Element {
     const { onClick, squares } = this.props;
-    return (
-      <Square
-        key={`square-${i}`}
-        value={squares[i]}
-        onClick={() => onClick(i)}
-      />
-    );
+    return <Square key={`square-${i}`} value={squares[i]} onClick={() => onClick(i)} />;
   }
 
   private renderRow(): JSX.Element[] {
-    const items = Array();
+    const items: JSX.Element[] = [];
     let count = 0;
     for (let i = 0; i <= 2; i += 1) {
-      const childrenSquare = Array();
+      const childrenSquare: JSX.Element[] = [];
       for (let j = 0; j <= 2; j += 1) {
         childrenSquare.push(this.renderSquare(count));
         count += 1;

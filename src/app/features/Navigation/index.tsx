@@ -1,14 +1,16 @@
 import React from 'react';
-import './Navigation.scss';
 import { IRoute } from '../../core/Interfaces/IRoute';
+import './Navigation.scss';
 
 export default class Navigation extends React.Component<IRoute[]> {
-  private createMenu(): (JSX.Element | null)[] {
-    const render = Object.keys(this.props).map((key, index) => {
-      if (this.props[key].name) {
+  createMenu(): (JSX.Element | null)[] {
+    const array = this.props;
+    const render = Object.keys(array).map((key, index) => {
+      const { path, name } = array[key];
+      if (name) {
         return (
           <li key={`route_${index.toString()}`}>
-            <a href={this.props[key].path}>{this.props[key].name}</a>
+            <a href={path}>{name}</a>
           </li>
         );
       }
@@ -17,7 +19,7 @@ export default class Navigation extends React.Component<IRoute[]> {
     return render;
   }
 
-  render() {
+  render(): JSX.Element {
     return <ul className="container">{this.createMenu()}</ul>;
   }
 }

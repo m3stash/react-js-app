@@ -2,6 +2,13 @@
   "name": "my-app",
   "version": "0.2.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,21 +18,25 @@
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
     "@types/react-router-dom": "^5.1.5",
-    "awesome-typescript-loader": "^5.2.1",
-    "node-sass": "^4.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint-config-prettier": "^8.1.0",
+    "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "prettier": "^2.2.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
-    "typescript": "^3.8.3"
+    "react-scripts": "4.0.3",
+    "typescript": "^4.2.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint ."
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
   },
   "browserslist": {
     "production": [
@@ -38,22 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0"
-  },
-  "prettier": {
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "jsxBracketSameLine": false,
-    "trailingComma": "all",
-    "printWidth": 80,
-    "semi": true,
-    "arrowParens": "always"
   }
 }

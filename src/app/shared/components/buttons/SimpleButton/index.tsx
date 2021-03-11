@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './SimpleButton.css';
 
-function SimpleButton(props) {
+interface ISimpleButton {
+  buttonName: string,
+}
+
+function SimpleButton(props: ISimpleButton): JSX.Element {
   const { buttonName } = props;
   return <button type="button">button name :{buttonName}</button>;
 }
 
 export default SimpleButton;
-
-SimpleButton.propTypes = {
-  buttonName: PropTypes.string.isRequired,
-};

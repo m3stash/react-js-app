@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './Morpion.scss';
 import Board from './Components/Board';
 
@@ -8,27 +8,16 @@ interface IState {
   stepNumber: number;
 }
 
-interface IProps {}
+interface Props {
+  children: ReactNode;
+}
 
 interface ISquare {
   squares: string[];
 }
 
-export default class Morpion extends React.Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null),
-        },
-      ],
-      stepNumber: 0,
-      xIsNext: true,
-    };
-  }
-
-  private calculateWinner(squares: string[]): string | null {
+export default class Morpion extends React.Component<Props, IState> {
+  static calculateWinner(squares: string[]): string | null {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -42,9 +31,9 @@ export default class Morpion extends React.Component<IProps, IState> {
     for (let i = 0; i < lines.length; i += 1) {
       const [a, b, c] = lines[i];
       if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
+        squares[a]
+        && squares[a] === squares[b]
+        && squares[a] === squares[c]
       ) {
         return squares[a];
       }
@@ -52,12 +41,25 @@ export default class Morpion extends React.Component<IProps, IState> {
     return null;
   }
 
-  private handleClick(i: number): void {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      stepNumber: 0,
+      xIsNext: true,
+    };
+  }
+
+  handleClick(i: number): void {
     const { xIsNext, history, stepNumber } = this.state;
     const histo = history.slice(0, stepNumber + 1);
     const current = histo[histo.length - 1];
     const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) {
+    if (Morpion.calculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = xIsNext ? 'X' : 'O';
@@ -72,7 +74,7 @@ export default class Morpion extends React.Component<IProps, IState> {
     });
   }
 
-  private jumpTo(step: number): void {
+  jumpTo(step: number): void {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
@@ -82,7 +84,7 @@ export default class Morpion extends React.Component<IProps, IState> {
   render(): JSX.Element {
     const { xIsNext, history, stepNumber } = this.state;
     const current = history[stepNumber];
-    const winner = this.calculateWinner(current.squares);
+    const winner = Morpion.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
       const desc = move

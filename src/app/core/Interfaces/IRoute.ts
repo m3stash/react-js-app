@@ -1,5 +1,7 @@
+import React from 'react';
+
 export interface IRoute {
-  name?: string;
-  path: string;
-  component: React.ReactType;
+    path: string;
+    name?: string;
+    component: React.ElementType;
 }
